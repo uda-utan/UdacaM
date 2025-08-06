@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>UdacaM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f8f5e7;
+      color: #222;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    nav {
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+    nav a {
+      margin: 0 20px;
+      color: #388e3c;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+    nav a.en-font {
+      font-style: italic;
+      font-family: 'Playfair Display', 'Montserrat', Arial, sans-serif;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    nav a.jp-font {
+      font-family: '游明朝', 'Yu Mincho', 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', 'MS Mincho', serif;
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+    nav a:hover {
+      color: #222;
+      text-decoration: underline;
+    }
+    .header-bg-video {
+      position: relative;
+      width: 100vw;
+      height: 360px;
+      max-height: 50vw;
+      overflow: hidden;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-bg-video iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120vw;
+      height: 360px;
+      min-height: 100%;
+      min-width: 100%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      pointer-events: none;
+      border: none;
+      opacity: 0.7;
+    }
+    .header-bg-video .header-text {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+      color: #fff;
+      text-shadow: 0 2px 16px #222, 0 0px 6px #388e3c66;
+      padding: 0 16px;
+    }
+    .header-bg-video .header-text h1 {
+      font-size: 3rem;
+      font-family: 'Playfair Display', 'Montserrat', Arial, sans-serif;
+      font-style: italic;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+      color: #fff;
+    }
+    .header-bg-video .header-text p {
+      font-size: 1.5rem;
+      font-family: '游明朝', 'Yu Mincho', serif;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 0;
+    }
+    .profile-name {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-bottom: 16px;
+      margin-top: 10px;
+    }
+    .profile-career {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1rem;
+      margin-top: 8px;
+    }
+    .career-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-bottom: 6px;
+      max-width: 520px;
+      width: 100%;
+    }
+    .career-year {
+      min-width: 65px;
+      font-weight: bold;
+      text-align: left;
+      font-family: 'Montserrat', '游明朝', 'Yu Mincho', serif;
+      color: #388e3c;
+      font-size: 1.02rem;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    .career-desc {
+      text-align: left;
+      font-size: 0.97rem;
+      word-break: break-word;
+      line-height: 1.9;
+      display: block;
+      white-space: pre-line;
+    }
+    @media (max-width: 650px) {
+      .header-bg-video { height: 200px; }
+      .header-bg-video iframe { height: 200px; width: 200vw; }
+      .header-bg-video .header-text h1 { font-size: 1.6rem; }
+      .header-bg-video .header-text p { font-size: 1rem; }
+      .profile-name { font-size: 1.15rem; }
+      .profile-career { font-size: 0.92rem; }
+      .career-row { max-width: 99vw; }
+      .career-year { font-size: 0.93rem; min-width: 54px; margin-right: 8px; }
+      .career-desc { font-size: 0.91rem; }
+    }
+    section {
+      max-width: 820px;
+      margin: 50px auto;
+      padding: 0 16px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      background: #f4f4f4;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px #bbb;
+      margin-bottom: 38px;
+      border: 1px solid #e0e0e0;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h2.en-font {
+      font-size: 2rem;
+      font-family: 'Playfair Display', 'Montserrat', Arial, sans-serif;
+      font-style: italic;
+      color: #388e3c;
+      margin-bottom: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-left: 5px solid #388e3c;
+      padding-left: 14px;
+      background: none;
+    }
+    h2.jp-font {
+      font-size: 2rem;
+      font-family: '游明朝', 'Yu Mincho', 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', 'MS Mincho', serif;
+      font-weight: 400;
+      font-style: normal;
+      color: #388e3c;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      border-left: 5px solid #388e3c;
+      padding-left: 14px;
+      background: none;
+    }
+    .works-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 10px;
+    }
+    .works-item {
+      background: #e5e7eb;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px #b0b5bb88;
+      padding: 18px 14px 12px;
+      text-align: center;
+      border: 1px solid #d1d5db;
+      transition: box-shadow 0.18s, border 0.18s;
+    }
+    .works-item:hover {
+      box-shadow: 0 6px 24px #888;
+      border: 1px solid #888;
+    }
+    .works-item h3.en-font {
+      font-size: 1.14rem;
+      color: #388e3c;
+      font-family: 'Playfair Display', 'Montserrat', Arial, sans-serif;
+      font-weight: bold;
+      font-style: italic;
+      margin-bottom: 9px;
+    }
+    .works-item h3.jp-font {
+      font-size: 1.14rem;
+      color: #388e3c;
+      font-family: '游明朝', 'Yu Mincho', 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', 'MS Mincho', serif;
+      font-weight: 400;
+      font-style: normal;
+      margin-bottom: 9px;
+    }
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 7px;
+      overflow: hidden;
+      margin-bottom: 7px;
+      box-shadow: 0 1px 6px #bbb;
+      background: #222;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #222;
+    }
+    .works-item .jp-font {
+      margin-top: 7px;
+    }
+    .contact-form {
+      background: #e5e7eb;
+      padding: 28px 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #b0b5bb88;
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: center;
+      border: 1px solid #d1d5db;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      max-width: 360px;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fff;
+      transition: border 0.18s;
+      box-sizing: border-box;
+    }
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #888;
+      outline: none;
+    }
+    .contact-form button {
+      padding: 12px 32px;
+      background: #388e3c;
+      color: white;
+      font-size: 1.12rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #b0b5bb88;
+      transition: background 0.2s, transform 0.18s;
+      margin-top: 0;
+      margin-bottom: 2px;
+    }
+    .contact-form button:hover {
+      background: #43a047;
+      transform: scale(1.05);
+    }
+    .footer-contact {
+      display: inline-block;
+      margin-top: 10px;
+      margin-bottom: 8px;
+      font-size: 0.97rem;
+      color: #666;
+      text-align: center;
+      font-family: '游明朝', 'Yu Mincho', 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', 'MS Mincho', serif;
+      line-height: 1.7;
+    }
+    .footer-contact div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      margin-bottom: 2px;
+    }
+    .footer-contact span {
+      font-weight: bold;
+      color: #444;
+      font-size: 0.97rem;
+      min-width: 92px;
+      display: inline-block;
+      text-align: right;
+    }
+    .footer-contact a {
+      color: #388e3c;
+      text-decoration: underline;
+      word-break: break-all;
+      font-size: 0.97rem;
+    }
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #388e3c;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.18s;
+    }
+    .footer-social a:hover {
+      color: #222;
+    }
+    .footer-social svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+    @media (max-width: 650px) {
+      section { padding: 0 4px; }
+      .works-list { grid-template-columns: 1fr; }
+      .contact-form { max-width: 98vw; padding: 12px 6px; border-radius: 9px; }
+      .contact-form input, .contact-form textarea { max-width: 96vw; font-size: 0.95rem; }
+      .footer-contact { font-size: 0.95rem; }
+      .footer-contact span { min-width: 74px; }
+      .footer-social { gap: 14px; }
+      .footer-social svg { width: 19px; height: 19px; }
+    }
+    footer {
+      text-align: center;
+      padding: 28px 20px 16px;
+      background: #e5e7eb;
+      color: #666;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      margin-top: 20px;
+      border-radius: 0 0 10px 10px;
+      font-family: '游明朝', 'Yu Mincho', 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', 'MS Mincho', serif;
+      border-top: 1px solid #b0b5bb;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#profile" class="en-font">Profile</a>
+    <a href="#works" class="en-font">Works</a>
+    <a href="#contact" class="en-font">Contact</a>
+  </nav>
+  <div class="header-bg-video">
+    <iframe 
+      src="https://www.youtube.com/embed/gqRKSPAh1pQ?si=a50tqQPCV7KfB6X-&autoplay=1&mute=1&controls=0&loop=1&playlist=gqRKSPAh1pQ"
+      title="YouTube video player"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen
+      referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+    <div class="header-text">
+      <h1>UdacaM</h1>
+      <p>動画で残す思い出フィルム</p>
+    </div>
+  </div>
+  <section id="profile">
+    <h2 class="en-font">Profile</h2>
+    <div class="jp-font profile-name">
+      Uda/ 宇田川 正義(ウダガワ マサヨシ)
+    </div>
+    <div class="jp-font profile-career">
+      <div class="career-row">
+        <span class="career-year">2023年</span>
+        <span class="career-desc">高校卒業後アメリカに留学しプログラミングを学ぶ</span>
+      </div>
+      <div class="career-row">
+        <span class="career-year">2024年</span>
+        <span class="career-desc">映像に転向を決意。アメリカにて編集代行業を行う</span>
+      </div>
+      <div class="career-row">
+        <span class="career-year">2025年</span>
+        <span class="career-desc">卒業・帰国後、映像クリエイターとして撮影から編集を行う</span>
+      </div>
+    </div>
+  </section>
+  <section id="works">
+    <h2 class="en-font">Works</h2>
+    <div class="works-list">
+      <div class="works-item">
+        <h3 class="jp-font">ブライダルムービー</h3>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+        </div>
+        <div class="jp-font">Comming soon</div>
+      </div>
+      <div class="works-item">
+        <h3 class="jp-font">ミュージックビデオ</h3>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+        </div>
+        <div class="jp-font">comming soon</div>
+      </div>
+      <div class="works-item">
+        <h3 class="jp-font">YouTube:こみんか日和</h3>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/ClBI8-FVX4c" allowfullscreen></iframe>
+        </div>
+        <div class="jp-font">運用・撮影・編集を行う。ドキュメンタリーVlog</div>
+      </div>
+      <div class="works-item">
+        <h3 class="jp-font">企業説明会の様子</h3>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/Uc1VNjmAJcY?si=1cr2YLWm6Tvu39B2" allowfullscreen></iframe>
+        </div>
+        <div class="jp-font">セミナーの様子やインタビュー・企業紹介を記録や広報として。</div>
+      </div>
+      <div class="works-item">
+        <h3 class="jp-font">自主制作</h3>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/y1_rd9GI3Jo?si=ilXNL5uFKf-LDQoo" allowfullscreen></iframe>
+        </div>
+        <div class="jp-font">ショートムービーで私だけの世界観を。</div>
+      </div>
+      <div class="works-item">
+        <h3 class="jp-font">アニメーション広告</h3>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/nSBPYAeHlFU?si=8FsZmdDekUamkXUS" allowfullscreen></iframe>
+        </div>
+        <div class="jp-font">広告・宣伝で使えるわかりやすいアニメーションを。</div>
+      </div>
+      <div class="works-item">
+        <h3 class="jp-font">編集代行</h3>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/JiqlMJXK7I8?si=4A2ZvJSzvVZlpCSB" allowfullscreen></iframe>
+        </div>
+        <div class="jp-font">その他たくさんの動画を編集。</div>
+      </div>
+    </div>
+  </section>
+  <section id="contact">
+    <h2 class="en-font">Contact</h2>
+    <form action="https://formspree.io/f/xldlpvoj" method="POST" class="contact-form">
+      <input type="text" name="name" placeholder="お名前" required class="jp-font" />
+      <input type="email" name="email" placeholder="メールアドレス" required class="jp-font" />
+      <textarea name="message" rows="5" placeholder="お問い合わせ内容" required class="jp-font"></textarea>
+      <button type="submit" class="en-font">送信する</button>
+    </form>
+  </section>
+  <footer>
+    <div>お問い合わせフォーム・各種DMよりご連絡いただけます</div>
+    <div class="footer-social">
+      <a href="https://www.twitter.com/masayoshi_0826" target="_blank" title="X (旧Twitter)">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.53 3H21l-7.19 7.74L22 21h-6.2l-4.39-5.34L5 21H2l7.68-8.26L2 3h6.34l4.02 4.89L17.53 3zm-1.04 16h2.13l-5.78-7.1-1.62 1.74L16.49 19zm-10-13l5.52 6.78 1.62-1.76L7.56 5H6.49zm8.07-.58l-1.55 1.68L17.53 5h-1.97zm-2.56 2.77L5.5 19h2.01l4.44-4.87-1.77-2.13zm1.8 2.11l5.54 6.81h-2.01l-4.43-4.87 1.77-2.14z"/>
+        </svg>
+        <span>X</span>
+      </a>
+      <a href="https://www.instagram.com/uda_masa0826?igsh=dGpydDVwcjd2ZXRx&utm_source=qr" target="_blank" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm6.13 1.12a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+        </svg>
+        <span>Instagram</span>
+      </a>
+    </div>
+    <div class="footer-contact jp-font">
+      <div><span>所在地：</span>千葉県袖ケ浦市</div>
+      <div><span>電話番号：</span><a href="tel:080-8284-3150">080-8284-3150</a></div>
+      <div><span>メールアドレス：</span><a href="mailto:udaudau.tan0826@gmail.com">udaudau.tan0826@gmail.com</a></div>
+    </div>
+    <div style="margin-top:3px;">
+      &copy; 2025 UdacaM. All Rights Reserved.
+    </div>
+  </footer>
+  <script>
+    // セクションのスクロールアニメーション
+    function revealSections() {
+      document.querySelectorAll('section').forEach(function(section) {
+        var rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          section.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealSections);
+    window.addEventListener('load', revealSections);
+  </script>
+</body>
+</html>
