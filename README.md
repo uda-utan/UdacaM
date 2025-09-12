@@ -6,6 +6,7 @@
 
 ## Keywords
 - 宇田川正義 (Masayoshi Udagawa)
+- うだがわまさよし
 - UdacaM / Uda
 - 映像クリエイター
 - カメラマン
