@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UdacaM｜ポートフォリオ｜映像制作実績">
+  
+  <title>ポートフォリオ | UdacaM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .category-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .category-btn {
+      padding: 10px 20px;
+      background: #e5e7eb;
+      border: 2px solid #d1d5db;
+      color: #222;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .category-btn.active {
+      background: #388e3c;
+      color: #fff;
+      border-color: #388e3c;
+    }
+
+    .category-btn:hover {
+      border-color: #388e3c;
+      color: #388e3c;
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .work-item {
+      background: #e5e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px #b0b5bb88;
+      border: 1px solid #d1d5db;
+      transition: all 0.3s ease;
+    }
+
+    .work-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px #888;
+    }
+
+    .work-thumbnail {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: #222;
+    }
+
+    .work-thumbnail iframe,
+    .work-thumbnail img,
+    .work-thumbnail video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      object-fit: cover;
+    }
+
+    .work-info {
+      padding: 20px;
+    }
+
+    .work-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #388e3c;
+      margin-bottom: 10px;
+      font-family: '游明朝', 'Yu Mincho', serif;
+    }
+
+    .work-desc {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 12px;
+    }
+
+    .work-meta {
+      display: flex;
+      gap: 15px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .work-tag {
+      display: inline-block;
+      background: #388e3c;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin-right: 5px;
+    }
+
+    .featured {
+      grid-column: span 1;
+    }
+
+    @media (max-width: 768px) {
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-tabs {
+        justify-content: flex-start;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="nav-logo">UdacaM</a>
+      <ul class="nav-links">
+        <li><a href="profile.html">会社概要</a></li>
+        <li><a href="works.html">ポートフォリオ</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h1>ポートフォリオ</h1>
+      <p>
+        様々なジャンルの映像制作実績です。<br>
+        ブライダル、企業紹介、音楽動画、SNS動画など、幅広い映像制作に対応しています。
+      </p>
+
+      <div class="category-tabs">
+        <button class="category-btn active" onclick="filterWorks('all')">すべて</button>
+        <button class="category-btn" onclick="filterWorks('bridal')">ブライダル</button>
+        <button class="category-btn" onclick="filterWorks('corporate')">企業・セミナー</button>
+        <button class="category-btn" onclick="filterWorks('music')">音楽動画</button>
+        <button class="category-btn" onclick="filterWorks('sns')">SNS動画</button>
+        <button class="category-btn" onclick="filterWorks('animation')">アニメーション</button>
+      </div>
+
+      <div class="works-grid">
+        <!-- ブライダル -->
+        <div class="work-item" data-category="bridal">
+          <div class="work-thumbnail">
+            <iframe src="https://www.youtube.com/embed/Kjo20IZBMeQ?si=2iwu8hGzyNuKlVVI" allowfullscreen></iframe>
+          </div>
+          <div class="work-info">
+            <div class="work-title">ブライダルムービー</div>
+            <div class="work-desc">一生に一度の記念をムービーで残します</div>
+            <div><span class="work-tag">ブライダル</span></div>
+          </div>
+        </div>
+
+        <div class="work-item" data-category="bridal">
+          <div class="work-thumbnail">
+            <iframe src="https://www.youtube.com/embed/VA5VR5PIabg?si=JHNh-j2a66GwAp1P" allowfullscreen></iframe>
+          </div>
+          <div class="work-info">
+            <div class="work-title">結婚式記録ムービー</div>
+            <div class="work-desc">その一瞬の思い出をもう一度</div>
+            <div><span class="work-tag">ブライダル</span></div>
+          </div>
+        </div>
+
+        <!-- 音楽動画 -->
+        <div class="work-item" data-category="music">
+          <div class="work-thumbnail">
+            <iframe src="https://www.youtube.com/embed/x0-KQFq2OjQ?si=nkegB5S9p_gguz-w" allowfullscreen></iframe>
+          </div>
+          <div class="work-info">
+            <div class="work-title">[MV] くまっけJAPAN</div>
+            <div class="work-desc">くまっけJAPANさんの"ハッピーエンドの途中"のMVを制作</div>
+            <div><span class="work-tag">音楽MV</span></div>
+          </div>
+        </div>
+
+        <!-- YouTubeチャンネル -->
+        <div class="work-item" data-category="corporate">
+          <div class="work-thumbnail">
+            <iframe src="https://www.youtube.com/embed/ql-vroTPHk0?si=Ck4-8-oubmRPw3aw" allowfullscreen></iframe>
+          </div>
+          <div class="work-info">
+            <div class="work-title">YouTube:こみんか日和</div>
+            <div class="work-desc">運用・撮影・編集を行うドキュメンタリーVlog</div>
+            <div><span class="work-tag">YouTube</span></div>
+          </div>
+        </div>
+
+        <!-- 企業・セミナー -->
+        <div class="work-item" data-category="corporate">
+          <div class="work-thumbnail">
+            <iframe src="https://www.youtube.com/embed/Uc1VNjmAJcY?si=1cr2YLWm6Tvu39B2" allowfullscreen></iframe>
+          </div>
+          <div class="work-info">
+            <div class="work-title">企業説明会の様子</div>
+            <div class="work-desc">セミナーやインタビュー・企業紹介を記録</div>
+            <div><span class="work-tag">企業</span></div>
+          </div>
+        </div>
+
+        <!-- 自主制作 -->
+        <div class="work-item" data-category="corporate">
+          <div class="work-thumbnail">
+            <iframe src="https://www.youtube.com/embed/y1_rd9GI3Jo?si=ilXNL5uFKf-LDQoo" allowfullscreen></iframe>
+          </div>
+          <div class="work-info">
+            <div class="work-title">自主制作ショートムービー</div>
+            <div class="work-desc">オリジナルの世界観を表現したショートムービー</div>
+            <div><span class="work-tag">自主制作</span></div>
+          </div>
+        </div>
+
+        <!-- アニメーション -->
+        <div class="work-item" data-category="animation">
+          <div class="work-thumbnail">
+            <iframe src="https://www.youtube.com/embed/nSBPYAeHlFU?si=8FsZmdDekUamkXUS" allowfullscreen></iframe>
+          </div>
+          <div class="work-info">
+            <div class="work-title">アニメーション広告</div>
+            <div class="work-desc">広告・宣伝で使えるわかりやすいアニメーション</div>
+            <div><span class="work-tag">アニメーション</span></div>
+          </div>
+        </div>
+
+        <!-- 編集代行 -->
+        <div class="work-item" data-category="corporate">
+          <div class="work-thumbnail">
+            <iframe src="https://www.youtube.com/embed/JiqlMJXK7I8?si=4A2ZvJSzvVZlpCSB" allowfullscreen></iframe>
+          </div>
+          <div class="work-info">
+            <div class="work-title">編集代行実績</div>
+            <div class="work-desc">その他たくさんの動画を編集・制作</div>
+            <div><span class="work-tag">編集</span></div>
+          </div>
+        </div>
+
+        <!-- SNS動画 -->
+        <div class="work-item" data-category="sns">
+          <div class="work-thumbnail" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+            <a href="https://www.tiktok.com/@hanna_tiktok_japan/video/7537295823810333959" target="_blank" style="width: 100%; height: 100%;">
+              <img src="https://p16-sign-va.tiktokcdn.com/obj/tos-maliva-p-0068/7537295823810333959_thumbnail.jpg" alt="TikTok動画" style="width: 100%; height: 100%; object-fit: cover;">
+            </a>
+          </div>
+          <div class="work-info">
+            <div class="work-title">SNS 縦動画編集</div>
+            <div class="work-desc">TikTok、Instagram向けの縦動画も撮影・編集対応</div>
+            <div><span class="work-tag">SNS</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>実績企業（非公開案件含む）</h2>
+      
+      <div class="works-grid">
+        <div class="work-item">
+          <div class="work-info">
+            <div class="work-title">株式会社 ニチレイ様</div>
+            <div class="work-desc">企業紹介動画・セミナー映像</div>
+          </div>
+        </div>
+        <div class="work-item">
+          <div class="work-info">
+            <div class="work-title">ServiceNow Japan合同会社様</div>
+            <div class="work-desc">製品説明動画・インタビュー</div>
+          </div>
+        </div>
+        <div class="work-item">
+          <div class="work-info">
+            <div class="work-title">株式会社 リアライズコーポレーション様</div>
+            <div class="work-desc">各種映像制作・編集業務</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>UdacaM - 映像制作専門</div>
+    <div class="footer-social">
+      <a href="https://www.twitter.com/masayoshi_0826" target="_blank" title="X (旧Twitter)">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.53 3H21l-7.19 7.74L22 21h-6.2l-4.39-5.34L5 21H2l7.68-8.26L2 3h6.34l4.02 4.89L17.53 3zm-1.04 16h2.13l-5.78-7.1-1.62 1.74L16.49 19zm-10-13l5.52 6.78 1.62-1.76L7.56 5H6.49z"/>
+        </svg>
+        <span>X</span>
+      </a>
+      <a href="https://www.instagram.com/uda_masa0826?igsh=dGpydDVwcjd2ZXRx&utm_source=qr" target="_blank" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20h8.5A4.25 4.25 0 0 0 20 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5z"/>
+        </svg>
+        <span>Instagram</span>
+      </a>
+    </div>
+    <div class="footer-contact">
+      <div><span>所在地：</span>千葉県袖ケ浦市</div>
+      <div><span>電話番号：</span><a href="tel:080-8284-3150">080-8284-3150</a></div>
+      <div><span>メールアドレス：</span><a href="mailto:udaudau.tan0826@gmail.com">udaudau.tan0826@gmail.com</a></div>
+    </div>
+    <div style="margin-top: 20px;">
+      &copy; 2025 UdacaM. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    function filterWorks(category) {
+      const items = document.querySelectorAll('.work-item');
+      const buttons = document.querySelectorAll('.category-btn');
+      
+      // ボタンのアクティブ状態を切り替え
+      buttons.forEach(btn => {
+        if (btn.getAttribute('onclick').includes(`'${category}'`)) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // アイテムの表示・非表示を切り替え
+      items.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = '';
+          setTimeout(() => {
+            item.style.opacity = '1';
+          }, 10);
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
