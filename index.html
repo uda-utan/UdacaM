@@ -2,189 +2,91 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="google-site-verification" content="pyr3TP2M2SfXhhGzvZByEhPI-_QoarZShtDTe2CUHcE" />
-  <meta name="description" content="UdacaM｜宇田川正義｜うだがわまさよし｜映像制作会社｜映像クリエイター・カメラマン｜千葉県・袖ケ浦市">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>UdacaM | 映像制作</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="common.css">
   <style>
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
+    * {
       margin: 0;
       padding: 0;
-      overflow: hidden;
+      box-sizing: border-box;
     }
 
-    .hero {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      background: #222;
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #f8f5e7;
       display: flex;
       align-items: center;
       justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
     }
 
-    .hero-video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 120vw;
-      height: 100vh;
-      min-height: 100%;
-      min-width: 100%;
-      transform: translate(-50%, -50%);
-      object-fit: cover;
-      opacity: 0.6;
-      z-index: 1;
-      pointer-events: none;
-      border: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
+    .container {
       text-align: center;
-      color: #fff;
-      text-shadow: 0 2px 16px #222, 0 0px 6px #388e3c66;
+      background: #fff;
+      padding: 60px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px #bbb;
+      max-width: 600px;
     }
 
-    .hero-content h1 {
-      font-size: 9.0rem;
+    h1 {
+      font-size: 2.5rem;
       font-family: 'Playfair Display', 'Montserrat', Arial, sans-serif;
       font-style: italic;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-      margin-top: 0;
-      color: #fff;
-      line-height: 1;
+      color: #388e3c;
+      margin-bottom: 30px;
     }
 
-    .hero-content p {
-      font-size: 2.8rem;
-      font-family: '游明朝', 'Yu Mincho', serif;
-      font-weight: 400;
-      letter-spacing: 1px;
-      margin-bottom: 60px;
-      color: #fff;
+    p {
+      font-size: 1.3rem;
+      color: #333;
+      line-height: 1.8;
+      margin-bottom: 40px;
     }
 
-    .cta-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .cta-button {
-      padding: 16px 40px;
+    a {
+      display: inline-block;
+      padding: 12px 32px;
+      background: #388e3c;
+      color: white;
+      text-decoration: none;
       font-size: 1.1rem;
       font-weight: bold;
-      border: 2px solid #fff;
-      background: transparent;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      cursor: pointer;
+      border-radius: 6px;
       transition: all 0.3s ease;
-      font-family: 'Montserrat', Arial, sans-serif;
-      letter-spacing: 1px;
-      display: inline-block;
     }
 
-    .cta-button:hover {
-      background: #388e3c;
-      border-color: #388e3c;
+    a:hover {
+      background: #43a047;
       transform: scale(1.05);
     }
 
-    .cta-button.primary {
-      background: #388e3c;
-      border-color: #388e3c;
-    }
-
-    .cta-button.primary:hover {
-      background: #43a047;
-      border-color: #43a047;
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      animation: bounce 2s infinite;
-    }
-
-    .scroll-indicator svg {
-      width: 30px;
-      height: 30px;
-      stroke: #fff;
-      fill: none;
-      stroke-width: 2;
-    }
-
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateX(-50%) translateY(0);
-      }
-      50% {
-        transform: translateX(-50%) translateY(10px);
-      }
-    }
-
-    @media (max-width: 650px) {
-      .hero-content h1 {
-        font-size: 3rem;
+    @media (max-width: 480px) {
+      .container {
+        padding: 40px 20px;
       }
 
-      .hero-content p {
-        font-size: 1.5rem;
+      h1 {
+        font-size: 1.8rem;
       }
 
-      .cta-buttons {
-        gap: 12px;
+      p {
+        font-size: 1rem;
       }
 
-      .cta-button {
-        padding: 12px 28px;
-        font-size: 0.95rem;
+      a {
+        padding: 10px 24px;
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="hero">
-    <iframe 
-      class="hero-video"
-      src="https://www.youtube.com/embed/gqRKSPAh1pQ?si=a50tqQPCV7KfB6X-&autoplay=1&mute=1&controls=0&loop=1&playlist=gqRKSPAh1pQ"
-      title="YouTube video player"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-      referrerpolicy="strict-origin-when-cross-origin">
-    </iframe>
-
-    <div class="hero-content">
-      <h1>UdacaM</h1>
-      <p>撮影から編集まで｜映像制作</p>
-      <div class="cta-buttons">
-        <a href="profile.html" class="cta-button primary">サービス概要</a>
-        <a href="works.html" class="cta-button">実績紹介</a>
-        <a href="contact.html" class="cta-button">お問い合わせ</a>
-      </div>
-    </div>
-
-    <div class="scroll-indicator">
-      <svg viewBox="0 0 24 24">
-        <path d="M12 5v14m7-7l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
+  <div class="container">
+    <h1>UdacaM</h1>
+    <p>HPを移行しました！<br>こちらからどうぞ→</p>
+    <a href="https://www.andiinc.net">新しいホームページへ</a>
   </div>
 </body>
 </html>
